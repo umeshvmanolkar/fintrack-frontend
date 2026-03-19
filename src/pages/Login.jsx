@@ -1,15 +1,28 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/api';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (email && password) {
+        setError('');
+        setLoading(true);
+        try {
+            const data = await loginUser(email, password);
+            // Save authenticated user securely
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             navigate('/');
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -23,6 +36,9 @@ export default function Login() {
                     <h1 className="text-2xl font-bold tracking-tight text-white">FinTrack</h1>
                 </div>
                 <h2 className="text-2xl font-semibold text-center text-slate-100 mb-6">Welcome Back</h2>
+
+                {error && <div className="mb-4 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 text-sm text-center">{error}</div>}
+
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1">Email or Username</label>
@@ -33,6 +49,7 @@ export default function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <div>
@@ -44,13 +61,15 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-colors mt-4 shadow-lg shadow-indigo-600/20"
+                        disabled={loading}
+                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium rounded-lg transition-colors mt-4 shadow-lg shadow-indigo-600/20"
                     >
-                        Sign In
+                        {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
                 <p className="mt-6 text-center text-slate-400">

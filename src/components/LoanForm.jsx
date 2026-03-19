@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import { addLoan } from '../services/api';
 
 export default function LoanForm({ onClose }) {
     const [name, setName] = useState('');
@@ -7,11 +8,27 @@ export default function LoanForm({ onClose }) {
     const [totalAmount, setTotalAmount] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ name, interestRate, totalAmount, startDate, endDate });
-        onClose();
+        setLoading(true);
+        try {
+            const user = JSON.parse(localStorage.getItem('user'));
+            await addLoan(user.id, {
+                name,
+                interestRate: Number(interestRate),
+                totalAmount: Number(totalAmount),
+                remainingAmount: Number(totalAmount),
+                startDate,
+                endDate
+            });
+            onClose();
+        } catch (err) {
+            alert(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -19,7 +36,7 @@ export default function LoanForm({ onClose }) {
             <div className="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
                 <div className="flex justify-between items-center p-6 border-b border-slate-700">
                     <h3 className="text-xl font-bold text-white">Add New Loan</h3>
-                    <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors bg-slate-700/50 hover:bg-slate-600 p-1.5 rounded-lg"><X size={20} /></button>
+                    <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors bg-slate-700/50 hover:bg-slate-600 p-1.5 rounded-lg cursor-pointer"><X size={20} /></button>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
@@ -31,7 +48,7 @@ export default function LoanForm({ onClose }) {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-1">Total Amount ($)</label>
-                            <input type="number" value={totalAmount} onChange={(e) => setTotalAmount(e.target.value)} className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-white shadow-inner" placeholder="0.00" />
+                            <input type="number" required value={totalAmount} onChange={(e) => setTotalAmount(e.target.value)} className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-white shadow-inner" placeholder="0.00" />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-1">Interest Rate (%)</label>
@@ -51,8 +68,10 @@ export default function LoanForm({ onClose }) {
                     </div>
 
                     <div className="pt-2 flex gap-3">
-                        <button type="button" onClick={onClose} className="flex-1 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors shadow-lg">Cancel</button>
-                        <button type="submit" className="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-colors shadow-lg shadow-indigo-600/20">Save Loan</button>
+                        <button type="button" onClick={onClose} className="flex-1 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors shadow-lg cursor-pointer">Cancel</button>
+                        <button type="submit" disabled={loading} className="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium rounded-lg transition-colors shadow-lg shadow-indigo-600/20 cursor-pointer">
+                            {loading ? 'Saving...' : 'Save Loan'}
+                        </button>
                     </div>
                 </form>
             </div>

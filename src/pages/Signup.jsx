@@ -1,21 +1,36 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/api';
 
 export default function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            alert("Passwords don't match");
+            setError("Passwords don't match");
             return;
         }
-        if (name && email && password) {
-            navigate('/login');
+
+        setError('');
+        setLoading(true);
+
+        try {
+            const data = await registerUser(name, email, password);
+            // Auto login after registration
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            navigate('/');
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -29,6 +44,9 @@ export default function Signup() {
                     <h1 className="text-2xl font-bold tracking-tight text-white">FinTrack</h1>
                 </div>
                 <h2 className="text-2xl font-semibold text-center text-slate-100 mb-6">Create Account</h2>
+
+                {error && <div className="mb-4 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 text-sm text-center">{error}</div>}
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1">Name / Username</label>
@@ -39,6 +57,7 @@ export default function Signup() {
                             onChange={(e) => setName(e.target.value)}
                             placeholder="John Doe"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <div>
@@ -50,6 +69,7 @@ export default function Signup() {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="john@example.com"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <div>
@@ -61,6 +81,7 @@ export default function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <div>
@@ -72,13 +93,15 @@ export default function Signup() {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="••••••••"
                             required
+                            disabled={loading}
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-colors mt-6 shadow-lg shadow-indigo-600/20"
+                        disabled={loading}
+                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium rounded-lg transition-colors mt-6 shadow-lg shadow-indigo-600/20"
                     >
-                        Sign Up
+                        {loading ? 'Creating Account...' : 'Sign Up'}
                     </button>
                 </form>
                 <p className="mt-6 text-center text-slate-400">
