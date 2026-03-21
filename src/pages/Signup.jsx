@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/api';
+import { Zap } from 'lucide-react';
 
 export default function Signup() {
     const [name, setName] = useState('');
@@ -39,7 +40,7 @@ export default function Signup() {
             <div className="w-full max-w-md p-8 rounded-2xl bg-slate-800/80 border border-slate-700 shadow-xl backdrop-blur-sm">
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <div className="w-10 h-10 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 text-xl">
-                        F
+                        <Zap size={24} className="fill-white" />
                     </div>
                     <h1 className="text-2xl font-bold tracking-tight text-white">FinTrack</h1>
                 </div>

@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogIn, UserPlus, LogOut } from 'lucide-react';
+import { LayoutDashboard, LogIn, UserPlus, LogOut, Zap, BookOpen } from 'lucide-react';
 
 export default function Sidebar() {
     const location = useLocation();
@@ -21,7 +21,7 @@ export default function Sidebar() {
             <div className="flex items-center justify-between md:mb-8 md:mt-2 px-2">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
-                        F
+                        <Zap size={18} className="fill-white" />
                     </div>
                     <h1 className="text-xl font-bold tracking-tight text-white hidden sm:block md:block">FinTrack</h1>
                 </div>
@@ -43,9 +43,13 @@ export default function Sidebar() {
 
             {/* Desktop Navigation Links */}
             <nav className="flex-1 space-y-2 hidden md:block">
-                <Link to="/" className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-indigo-500/10 text-indigo-400 font-medium transition-colors">
+                <Link to="/" className="flex items-center gap-3 px-3 py-2.5 hover:bg-slate-700/50 text-slate-300 font-medium transition-colors rounded-lg">
                     <LayoutDashboard size={20} />
                     <span>Dashboard</span>
+                </Link>
+                <Link to="/guide" className="flex items-center gap-3 px-3 py-2.5 hover:bg-slate-700/50 text-slate-300 font-medium transition-colors rounded-lg">
+                    <BookOpen size={20} />
+                    <span>Loan Guide</span>
                 </Link>
 
                 {/* Ad Space Left Panel */}

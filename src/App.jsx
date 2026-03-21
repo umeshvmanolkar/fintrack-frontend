@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import Guide from './pages/Guide';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Dashboard />} />
+            <Route path="/guide" element={<Guide />} />
           </Routes>
         </main>
       </div>

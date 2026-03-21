@@ -121,7 +121,7 @@ export default function Dashboard() {
                         <div className="p-2 bg-slate-700/50 rounded-lg"><Wallet size={20} className="text-white" /></div>
                         <h3 className="font-medium">Total Balance</h3>
                     </div>
-                    <p className="text-4xl font-bold text-white tracking-tight">${stats.balance.toLocaleString()}</p>
+                    <p className="text-4xl font-bold text-white tracking-tight">₹{stats.balance.toLocaleString()}</p>
                 </div>
                 <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl backdrop-blur-sm relative overflow-hidden group hover:border-emerald-500/50 transition-colors">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -131,7 +131,7 @@ export default function Dashboard() {
                         <div className="p-2 bg-emerald-500/10 rounded-lg"><ArrowDownCircle size={20} className="text-emerald-400" /></div>
                         <h3 className="font-medium">Total Earnings</h3>
                     </div>
-                    <p className="text-4xl font-bold text-emerald-400 tracking-tight">${stats.totalEarnings.toLocaleString()}</p>
+                    <p className="text-4xl font-bold text-emerald-400 tracking-tight">₹{stats.totalEarnings.toLocaleString()}</p>
                 </div>
                 <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl backdrop-blur-sm relative overflow-hidden group hover:border-rose-500/50 transition-colors">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -141,7 +141,7 @@ export default function Dashboard() {
                         <div className="p-2 bg-rose-500/10 rounded-lg"><ArrowUpCircle size={20} className="text-rose-400" /></div>
                         <h3 className="font-medium">Total Spent / EMI</h3>
                     </div>
-                    <p className="text-4xl font-bold text-rose-400 tracking-tight">${stats.totalSpent.toLocaleString()}</p>
+                    <p className="text-4xl font-bold text-rose-400 tracking-tight">₹{stats.totalSpent.toLocaleString()}</p>
                 </div>
                 <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl backdrop-blur-sm relative overflow-hidden group hover:border-amber-500/50 transition-colors">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -151,7 +151,7 @@ export default function Dashboard() {
                         <div className="p-2 bg-amber-500/10 rounded-lg"><Landmark size={20} className="text-amber-400" /></div>
                         <h3 className="font-medium">Active Loans</h3>
                     </div>
-                    <p className="text-4xl font-bold text-amber-400 tracking-tight">${stats.activeLoansTotal.toLocaleString()}</p>
+                    <p className="text-4xl font-bold text-amber-400 tracking-tight">₹{stats.activeLoansTotal.toLocaleString()}</p>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@ export default function Dashboard() {
                                 <LineChart data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.5} vertical={false} />
                                     <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                                    <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(value) => `$${value}`} />
+                                    <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(value) => `₹${value}`} />
                                     <Tooltip
                                         contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#f8fafc' }}
                                         itemStyle={{ color: '#f8fafc', fontWeight: 500 }}
@@ -193,7 +193,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                                 <div className={`font-bold ${item.type === 'earning' ? 'text-emerald-400' : 'text-rose-400'}`}>
-                                    {item.type === 'earning' ? '+' : '-'}${item.amount}
+                                    {item.type === 'earning' ? '+' : '-'}₹{item.amount}
                                 </div>
                             </div>
                         )) : <div className="text-slate-500 text-center mt-10">No transactions added</div>}

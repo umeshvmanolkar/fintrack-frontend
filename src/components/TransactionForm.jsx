@@ -50,7 +50,7 @@ export default function TransactionForm({ onClose }) {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1">Amount ($)</label>
+                        <label className="block text-sm font-medium text-slate-300 mb-1">Amount (₹)</label>
                         <input type="number" required value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-white shadow-inner" placeholder="0.00" />
                     </div>
 
