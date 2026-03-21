@@ -1,12 +1,23 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogIn, UserPlus, LogOut, Zap, BookOpen, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { LayoutDashboard, LogIn, UserPlus, LogOut, Zap, BookOpen, Menu, X, Sun, Moon } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Sidebar() {
     const location = useLocation();
     const navigate = useNavigate();
     const hideSidebar = location.pathname === '/login' || location.pathname === '/signup';
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isLightMode, setIsLightMode] = useState(localStorage.getItem('theme') === 'light');
+
+    // Handle initial load and theme toggles
+    useEffect(() => {
+        if (isLightMode) {
+            document.documentElement.classList.add('theme-light');
+        } else {
+            document.documentElement.classList.remove('theme-light');
+        }
+    }, [isLightMode]);
 
     if (hideSidebar) return null;
 
@@ -20,6 +31,12 @@ export default function Sidebar() {
 
     const closeMenu = () => setIsMobileMenuOpen(false);
 
+    const toggleTheme = () => {
+        const newTheme = !isLightMode;
+        setIsLightMode(newTheme);
+        localStorage.setItem('theme', newTheme ? 'light' : 'dark');
+    };
+
     return (
         <>
             {/* Mobile Top Navigation Bar (Always Visible on Mobile) */}
@@ -28,7 +45,7 @@ export default function Sidebar() {
                     <button onClick={() => setIsMobileMenuOpen(true)} className="text-slate-300 hover:text-white p-1 rounded-lg hover:bg-slate-700 transition-colors focus:outline-none cursor-pointer">
                         <Menu size={24} />
                     </button>
-                    <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 px-1">
                         <Zap size={18} className="fill-white" />
                     </div>
                     <h1 className="text-xl font-bold tracking-tight text-white">FinTrack</h1>
@@ -49,7 +66,7 @@ export default function Sidebar() {
                 {/* Sidebar Header */}
                 <div className="flex items-center justify-between mb-8 mt-2 px-2">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+                        <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 px-1">
                             <Zap size={18} className="fill-white" />
                         </div>
                         <h1 className="text-xl font-bold tracking-tight text-white">FinTrack</h1>
@@ -78,8 +95,22 @@ export default function Sidebar() {
                     </div>
                 </nav>
 
-                {/* Authentication Controls Container */}
+                {/* Authentication & Theme Controls Container */}
                 <div className="mt-auto space-y-2 pt-4 border-t border-slate-700/50 flex flex-col w-full pb-2 md:pb-0">
+                    <button onClick={toggleTheme} className="flex items-center gap-3 px-3 py-3 md:py-2.5 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors w-full text-left cursor-pointer">
+                        {isLightMode ? (
+                            <>
+                                <Moon size={20} />
+                                <span>Dark Theme</span>
+                            </>
+                        ) : (
+                            <>
+                                <Sun size={20} />
+                                <span>Light Theme</span>
+                            </>
+                        )}
+                    </button>
+
                     {isAuthenticated ? (
                         <button onClick={() => { closeMenu(); handleLogout(); }} className="flex items-center gap-3 px-3 py-3 md:py-2.5 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition-colors w-full text-left cursor-pointer">
                             <LogOut size={20} />

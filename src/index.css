@@ -24,3 +24,14 @@ body {
 #root {
   width: 100%;
 }
+
+html.theme-light {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: white;
+}
+
+html.theme-light img,
+html.theme-light iframe,
+html.theme-light video {
+  filter: invert(1) hue-rotate(180deg);
+}
