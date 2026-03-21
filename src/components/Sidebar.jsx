@@ -29,7 +29,7 @@ export default function Sidebar() {
                 {/* Mobile Navigation Horizontal */}
                 <div className="flex md:hidden items-center gap-4">
                     {isAuthenticated ? (
-                        <button onClick={handleLogout} className="flex items-center gap-2 p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors">
+                        <button onClick={handleLogout} className="flex items-center gap-2 p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer">
                             <LogOut size={20} />
                         </button>
                     ) : (
@@ -47,10 +47,15 @@ export default function Sidebar() {
                     <LayoutDashboard size={20} />
                     <span>Dashboard</span>
                 </Link>
+
+                {/* Ad Space Left Panel */}
+                <div className="mt-8 relative w-full h-auto min-h-64 bg-slate-900/50 rounded-lg overflow-hidden border border-slate-700/50 hidden md:block">
+                    <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="side-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', minHeight: '260px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
+                </div>
             </nav>
 
             {/* Desktop Auth Controls */}
-            <div className="hidden md:flex mt-auto space-y-2 pt-4 border-t border-slate-700/50 flex-col">
+            <div className="hidden md:flex mt-auto space-y-2 pt-4 border-t border-slate-700/50 flex-col w-full">
                 {isAuthenticated ? (
                     <button onClick={handleLogout} className="flex items-center gap-3 px-3 py-2.5 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition-colors w-full text-left cursor-pointer">
                         <LogOut size={20} />
