@@ -1,4 +1,5 @@
-import { ShieldAlert, Info, ExternalLink, Smartphone } from 'lucide-react';
+import { useState } from 'react';
+import { ShieldAlert, Info, ExternalLink, Smartphone, ChevronDown, ChevronUp } from 'lucide-react';
 
 const aggregators = [
     { name: 'Anumati', website: 'https://anumati.co.in/' },
@@ -8,6 +9,44 @@ const aggregators = [
     { name: 'FinVu', website: 'https://finvu.in/' },
     { name: 'CAMSfinserv', website: 'https://www.camsfinserv.com/' },
 ];
+
+const dummyPaydayApps = [
+    { id: 1, appName: "QuickCash", nbfc: "FastFinance NBFC Pvt Ltd", supportMail: "support@quickcash.in", grievanceMail: "grievance@quickcash.in" },
+    { id: 2, appName: "EasyLoan", nbfc: "Reliable Credit Ltd", supportMail: "help@easyloan.com", grievanceMail: "nodal.officer@easyloan.com" },
+    { id: 3, appName: "InstaRupee", nbfc: "Apex Capital Services", supportMail: "care@instarupee.in", grievanceMail: "escalation@instarupee.in" },
+    { id: 4, appName: "CashKing", nbfc: "Royal FinServ NBFC", supportMail: "contact@cashking.org", grievanceMail: "complaints@cashking.org" },
+    { id: 5, appName: "SwiftPay", nbfc: "Swift Financial Solutions", supportMail: "query@swiftpay.in", grievanceMail: "grievances@swiftpay.in" }
+];
+
+function GuideSection({ title, defaultOpen = false, children }) {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+
+    return (
+        <div className="bg-slate-800/80 rounded-2xl border border-slate-700 shadow-xl mb-4 backdrop-blur-sm relative overflow-hidden transition-all duration-300">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full p-6 md:p-8 flex items-center justify-between bg-transparent hover:bg-slate-700/30 transition-colors cursor-pointer text-left focus:outline-none group"
+            >
+                <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-xl shrink-0 transition-colors ${isOpen ? 'bg-indigo-500/20' : 'bg-slate-700/50 group-hover:bg-indigo-500/10'}`}>
+                        <Info className={isOpen ? 'text-indigo-400' : 'text-slate-400 group-hover:text-indigo-400'} size={24} />
+                    </div>
+                    <h3 className="text-xl font-semibold text-white">{title}</h3>
+                </div>
+                <div className="text-slate-400 shrink-0 ml-4 group-hover:text-white transition-colors">
+                    {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                </div>
+            </button>
+
+            {isOpen && (
+                <div className="px-6 md:px-8 pb-6 md:pb-8 border-t border-slate-700/50 pt-6 animate-in slide-in-from-top-2 duration-200">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none"></div>
+                    {children}
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default function Guide() {
     return (
@@ -22,32 +61,26 @@ export default function Guide() {
                     <p className="text-slate-400 mt-2 text-base md:text-lg">Essential steps to take if you are struggling to repay payday loans on time to protect your data and prevent continuous harassment.</p>
                 </div>
 
-                <div className="bg-slate-800/80 rounded-2xl border border-slate-700 shadow-xl p-6 md:p-8 mb-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full"></div>
-
-                    <div className="flex flex-col md:flex-row items-start gap-4 mb-6 relative">
-                        <div className="p-3 bg-indigo-500/10 rounded-xl mt-1 shrink-0">
-                            <Info className="text-indigo-400" size={24} />
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-semibold text-white mb-2">Step 1: Revoke Third-Party Bank Consents</h3>
-                            <p className="text-slate-300 leading-relaxed">
-                                Many payday loan apps trick you into granting permanent access to your live bank statements via officially licensed <strong>Account Aggregators (AAs)</strong>. If you are unable to repay your loan, lenders and recovery agents may use this permanent backdoor access to continuously monitor your balance and trigger auto-debits the second you receive your salary.
-                            </p>
-                            <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-4 mt-6">
-                                <p className="text-rose-300 leading-relaxed font-medium">
-                                    <strong>Action Required:</strong> You must immediately log into the aggregators listed below (either via their App or Website) and "REVOKE" your active consents to instantly disconnect loan apps from spying on your bank account.
-                                </p>
-                            </div>
-                        </div>
+                <GuideSection title="Step 1: Revoke Third-Party Bank Consents" defaultOpen={false}>
+                    <p className="text-slate-300 leading-relaxed relative z-10">
+                        Many payday loan apps trick you into granting permanent access to your live bank statements via officially licensed <strong>Account Aggregators (AAs)</strong>. If you are unable to repay your loan, lenders and recovery agents may use this permanent backdoor access to continuously monitor your balance and trigger auto-debits the second you receive your salary.
+                    </p>
+                    <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-4 mt-6 relative z-10">
+                        <p className="text-rose-300 leading-relaxed font-medium">
+                            <strong>Action Required:</strong> You must immediately log into the aggregators listed below (either via their App or Website) and "REVOKE" your active consents to instantly disconnect loan apps from spying on your bank account.
+                        </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 relative z-10">
                         {aggregators.map((aa, idx) => (
-                            <div key={idx} className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/50 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-all flex flex-col group">
+                            <div key={idx} className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/50 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-all flex flex-col group/card relative z-10">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center font-bold text-slate-300 group-hover:text-indigo-400 group-hover:bg-indigo-500/10 transition-colors">
-                                        {aa.name.charAt(0)}
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center shadow-inner group-hover/card:shadow-indigo-500/20 group-hover/card:shadow-lg transition-all overflow-hidden border border-slate-200 shrink-0">
+                                        <img
+                                            src={`https://www.google.com/s2/favicons?sz=64&domain_url=${aa.website}`}
+                                            alt={`${aa.name} logo`}
+                                            className="w-7 h-7 object-contain"
+                                        />
                                     </div>
                                     <h4 className="font-bold text-lg text-white">{aa.name}</h4>
                                 </div>
@@ -63,7 +96,71 @@ export default function Guide() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </GuideSection>
+
+                <GuideSection title="Step 2: File a Cybercrime Report & Block Contacts" defaultOpen={false}>
+                    <p className="text-slate-300 leading-relaxed relative z-10 mb-4">
+                        Once you have revoked the Account Aggregator consents, the next crucial step to stop harassment is reporting the illegal loan apps to the authorities and securing your phone.
+                    </p>
+                    <ul className="list-disc pl-5 text-slate-300 space-y-2 relative z-10">
+                        <li><strong>Report to Cybercrime:</strong> File a formal complaint immediately at the National Cyber Crime Reporting Portal (<a href="https://cybercrime.gov.in/" target="_blank" rel="noreferrer" className="text-indigo-400 hover:text-indigo-300 underline">cybercrime.gov.in</a>) or dial 1930. Provide screenshots of the harassing messages and the loan app details.</li>
+                        <li><strong>Block & Report on WhatsApp:</strong> Do not engage with recovery agents. Use WhatsApp's built-in "Block and Report" feature for every single unknown number that messages you.</li>
+                    </ul>
+                </GuideSection>
+
+                <GuideSection title="Important: Loan App NBFC & Grievance Directory" defaultOpen={false}>
+                    <p className="text-slate-300 leading-relaxed relative z-10 mb-6">
+                        If a loan app is harassing you (or your contacts), you must identify their official <strong>NBFC (Non-Banking Financial Company)</strong> partner and immediately email their Grievance Redressal Officer. If they do not resolve the harassment within 30 days, you can escalate the complaint directly to the RBI Ombudsman.
+                    </p>
+
+                    {/* Desktop Table View */}
+                    <div className="overflow-x-auto relative z-10 rounded-xl border border-slate-700/50 hidden md:block">
+                        <table className="w-full text-left text-sm text-slate-300">
+                            <thead className="bg-slate-900/80 text-xs uppercase text-slate-400">
+                                <tr>
+                                    <th className="px-6 py-4 font-semibold">Payday App Name</th>
+                                    <th className="px-6 py-4 font-semibold">Official NBFC Partner</th>
+                                    <th className="px-6 py-4 font-semibold">Support Email</th>
+                                    <th className="px-6 py-4 font-semibold">Grievance / Nodal Email</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-700/50">
+                                {dummyPaydayApps.map((app) => (
+                                    <tr key={app.id} className="bg-slate-800/50 hover:bg-slate-700/50 transition-colors">
+                                        <td className="px-6 py-4 font-bold text-white">{app.appName}</td>
+                                        <td className="px-6 py-4 text-slate-300">{app.nbfc}</td>
+                                        <td className="px-6 py-4">
+                                            <a href={`mailto:${app.supportMail}`} className="text-indigo-400 hover:text-indigo-300 transition-colors">{app.supportMail}</a>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <a href={`mailto:${app.grievanceMail}`} className="text-rose-400 hover:text-rose-300 font-medium transition-colors">{app.grievanceMail}</a>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Mobile Card View (shown only on small screens) */}
+                    <div className="md:hidden space-y-4 relative z-10">
+                        {dummyPaydayApps.map((app) => (
+                            <div key={app.id} className="bg-slate-900/50 p-5 border border-slate-700/50 rounded-xl hover:border-indigo-500/50 transition-colors">
+                                <h4 className="text-white font-bold text-lg mb-1">{app.appName}</h4>
+                                <p className="text-xs text-slate-400 mb-4 uppercase tracking-wider">{app.nbfc}</p>
+                                <div className="space-y-3 text-sm bg-slate-800/50 p-4 rounded-lg border border-slate-700/30">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-slate-500 font-medium text-xs uppercase">Support Email</span>
+                                        <a href={`mailto:${app.supportMail}`} className="text-indigo-400 truncate">{app.supportMail}</a>
+                                    </div>
+                                    <div className="flex flex-col gap-1 pt-2 border-t border-slate-700/50">
+                                        <span className="text-slate-500 font-medium text-xs uppercase">Grievance Email</span>
+                                        <a href={`mailto:${app.grievanceMail}`} className="text-rose-400 font-medium truncate">{app.grievanceMail}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </GuideSection>
 
             </div>
         </div>
