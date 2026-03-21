@@ -65,12 +65,17 @@ export default function Guide() {
         <div className="p-4 md:p-8 h-full flex flex-col w-full relative overflow-y-auto">
             <div className="max-w-4xl mx-auto w-full pb-16">
 
-                <div className="mb-8">
+                <div className="mb-6 md:mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
                         <ShieldAlert className="text-rose-500" size={32} />
                         Loan Repayment & Safety Guide
                     </h2>
                     <p className="text-slate-400 mt-2 text-base md:text-lg">Essential steps to take if you are struggling to repay payday loans on time to protect your data and prevent continuous harassment.</p>
+                </div>
+
+                {/* Mobile In-Feed Ad Banner (Scrolls naturally) */}
+                <div className="md:hidden w-full h-[100px] mb-8 bg-slate-900/30 rounded-xl overflow-hidden border border-slate-700/50 flex align-center justify-center relative">
+                    <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="mobile-incontent-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
                 </div>
 
                 <GuideSection title="Step 1: Revoke Third-Party Bank Consents" defaultOpen={false}>
