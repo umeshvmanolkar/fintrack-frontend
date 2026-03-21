@@ -7,9 +7,9 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
-      <div className="flex h-screen w-screen overflow-hidden bg-slate-900 text-slate-50 font-sans">
+      <div className="flex flex-col md:flex-row h-screen w-screen overflow-hidden bg-slate-900 text-slate-50 font-sans">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto w-full">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden w-full relative">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

@@ -82,13 +82,13 @@ export default function Dashboard() {
     if (loading) return <div className="flex h-screen items-center justify-center text-white bg-slate-900 w-full animate-pulse font-medium text-lg">Loading Dashboard...</div>;
 
     return (
-        <div className="p-8 h-full flex flex-col gap-8 w-full relative">
-            <div className="flex justify-between items-center">
+        <div className="p-4 md:p-8 h-full flex flex-col gap-6 md:gap-8 w-full relative">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold text-white">Dashboard</h2>
-                    <p className="text-slate-400 mt-1">Welcome back, {user?.name}</p>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white">Dashboard</h2>
+                    <p className="text-sm md:text-base text-slate-400 mt-1">Welcome back, {user?.name}</p>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                     <button
                         onClick={() => setShowTransactionModal(true)}
                         className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors font-medium shadow-lg shadow-indigo-600/20 cursor-pointer"

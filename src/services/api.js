@@ -1,4 +1,7 @@
-export const API_URL = 'https://fintrack-backend-wnf9.onrender.com/api';
+// Automatically use localhost during 'npm run dev', and the live Render URL in production!
+export const API_URL = import.meta.env.DEV
+    ? 'http://localhost:5000/api'
+    : 'https://fintrack-backend-wnf9.onrender.com/api';
 
 export const loginUser = async (email, password) => {
     const res = await fetch(`${API_URL}/auth/login`, {
