@@ -1,5 +1,17 @@
 import { useState } from 'react';
-import { ShieldAlert, Info, ExternalLink, Smartphone, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShieldAlert, Info, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+
+const AppleIcon = ({ size }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.62-1.496 3.6-2.947 1.13-1.639 1.595-3.228 1.615-3.322-.033-.013-3.115-1.198-3.14-4.785-.02-2.99 2.45-4.43 2.56-4.502-1.396-2.046-3.557-2.324-4.325-2.39-1.884-.193-3.665 1.108-4.595 1.108zM15.003 3.593c.833-1.006 1.393-2.41.121-3.593-1.18.06-2.735.802-3.594 1.808-.755.856-1.427 2.278-1.252 3.513 1.32.103 2.766-.64 3.594-1.728z" />
+    </svg>
+);
+
+const PlayStoreIcon = ({ size }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.609 1.814l11.082 11.236-11.082 11.136c-.198-.445-.308-.946-.308-1.472v-19.428c0-.526.11-1.027.308-1.472zm11.758 11.916l2.91-2.951-2.91-2.949-11.081 11.136 11.081-11.236zm.609-6.471l6.196 3.578c.84.485.84 1.282 0 1.767l-6.196 3.576-3.181-3.235 3.181-3.22zm-12.793 15.341l11.516-11.666-11.516-11.564c-.453.308-.772.822-.772 1.416v18.983c0 .594.319 1.108.772 1.416z" />
+    </svg>
+);
 
 const aggregators = [
     { name: 'Anumati', website: 'https://anumati.co.in/' },
@@ -75,7 +87,7 @@ export default function Guide() {
                         {aggregators.map((aa, idx) => (
                             <div key={idx} className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/50 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-all flex flex-col group/card relative z-10">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center shadow-inner group-hover/card:shadow-indigo-500/20 group-hover/card:shadow-lg transition-all overflow-hidden border border-slate-200 shrink-0">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center shadow-inner group-hover/card:shadow-indigo-500/20 group-hover/card:shadow-lg transition-all overflow-hidden border border-slate-300/50 shrink-0">
                                         <img
                                             src={`https://www.google.com/s2/favicons?sz=64&domain_url=${aa.website}`}
                                             alt={`${aa.name} logo`}
@@ -85,12 +97,15 @@ export default function Guide() {
                                     <h4 className="font-bold text-lg text-white">{aa.name}</h4>
                                 </div>
 
-                                <div className="flex gap-3 mt-auto">
-                                    <a href={aa.website} target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-xs font-medium text-slate-200 transition-colors">
-                                        <ExternalLink size={16} /> Website
+                                <div className="flex gap-2 mt-auto">
+                                    <a href={aa.website} target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center gap-1.5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-xs font-medium text-slate-200 transition-colors tooltip" title="Website">
+                                        <ExternalLink size={16} /> Web
                                     </a>
-                                    <a href={`https://play.google.com/store/search?q=${aa.name}+Account+Aggregator&c=apps`} target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-xs font-medium text-emerald-400 transition-colors">
-                                        <Smartphone size={16} /> Play Store
+                                    <a href={`https://play.google.com/store/search?q=${aa.name}+Account+Aggregator&c=apps`} target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center gap-1.5 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-xs font-medium text-emerald-400 transition-colors tooltip" title="Android">
+                                        <PlayStoreIcon size={16} /> Android
+                                    </a>
+                                    <a href={`https://apps.apple.com/in/search?term=${aa.name}+Account+Aggregator`} target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center gap-1.5 py-2 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 rounded-lg text-xs font-medium text-sky-400 transition-colors tooltip" title="iOS">
+                                        <AppleIcon size={16} /> iOS
                                     </a>
                                 </div>
                             </div>

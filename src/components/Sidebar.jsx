@@ -27,15 +27,23 @@ export default function Sidebar() {
                 </div>
 
                 {/* Mobile Navigation Horizontal */}
-                <div className="flex md:hidden items-center gap-4">
+                <div className="flex md:hidden items-center gap-1 sm:gap-3">
                     {isAuthenticated ? (
-                        <button onClick={handleLogout} className="flex items-center gap-2 p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer">
-                            <LogOut size={20} />
-                        </button>
+                        <>
+                            <Link to="/" className={`p-2 rounded-lg transition-colors ${location.pathname === '/' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                <LayoutDashboard size={22} />
+                            </Link>
+                            <Link to="/guide" className={`p-2 rounded-lg transition-colors ${location.pathname === '/guide' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                <BookOpen size={22} />
+                            </Link>
+                            <button onClick={handleLogout} className="flex items-center p-2 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer ml-2">
+                                <LogOut size={22} />
+                            </button>
+                        </>
                     ) : (
                         <>
-                            <Link to="/login" className="p-2 text-slate-400 hover:text-white transition-colors"><LogIn size={20} /></Link>
-                            <Link to="/signup" className="p-2 text-slate-400 hover:text-white transition-colors"><UserPlus size={20} /></Link>
+                            <Link to="/login" className="p-2 text-slate-400 hover:text-white transition-colors"><LogIn size={22} /></Link>
+                            <Link to="/signup" className="p-2 text-slate-400 hover:text-white transition-colors"><UserPlus size={22} /></Link>
                         </>
                     )}
                 </div>
