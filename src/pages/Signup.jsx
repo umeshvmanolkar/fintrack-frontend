@@ -27,7 +27,7 @@ export default function Signup() {
             // Auto login after registration
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            navigate('/guide');
+            navigate('/');
         } catch (err) {
             setError(err.message);
         } finally {

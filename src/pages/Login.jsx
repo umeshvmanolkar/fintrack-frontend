@@ -19,7 +19,7 @@ export default function Login() {
             // Save authenticated user securely
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            navigate('/guide');
+            navigate('/');
         } catch (err) {
             setError(err.message);
         } finally {

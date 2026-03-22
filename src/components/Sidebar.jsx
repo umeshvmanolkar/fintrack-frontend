@@ -80,11 +80,11 @@ export default function Sidebar() {
 
                 {/* Primary Navigation Links */}
                 <nav className="flex-1 space-y-2">
-                    <Link to="/" onClick={closeMenu} className={`flex items-center gap-3 px-3 py-3 md:py-2.5 rounded-lg transition-colors font-medium ${location.pathname === '/' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}>
+                    <Link to="/dashboard" onClick={closeMenu} className={`flex items-center gap-3 px-3 py-3 md:py-2.5 rounded-lg transition-colors font-medium ${location.pathname === '/dashboard' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}>
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
                     </Link>
-                    <Link to="/guide" onClick={closeMenu} className={`flex items-center gap-3 px-3 py-3 md:py-2.5 rounded-lg transition-colors font-medium ${location.pathname === '/guide' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}>
+                    <Link to="/" onClick={closeMenu} className={`flex items-center gap-3 px-3 py-3 md:py-2.5 rounded-lg transition-colors font-medium ${location.pathname === '/' ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}>
                         <BookOpen size={20} />
                         <span>Loan Guide</span>
                     </Link>
