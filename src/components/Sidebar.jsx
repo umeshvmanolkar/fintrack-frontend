@@ -91,7 +91,7 @@ export default function Sidebar() {
 
                     {/* Ad Space Panel */}
                     <div className="mt-8 relative w-full h-auto min-h-64 bg-slate-900/50 rounded-lg overflow-hidden border border-slate-700/50">
-                        <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="side-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', minHeight: '260px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
+                        <iframe data-aa='2431384' src='//acceptable.a-ads.com/2431384/?size=Adaptive' title="side-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', minHeight: '260px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
                     </div>
                 </nav>
 

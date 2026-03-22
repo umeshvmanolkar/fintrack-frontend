@@ -215,7 +215,7 @@ export default function Dashboard() {
                         <h3 className="text-xl font-bold text-white mb-4">A Message From Our Sponsors</h3>
                         <p className="text-sm text-slate-400 mb-6 text-center">Supporting sponsors helps keep FinTrack 100% free!</p>
                         <div className="w-full h-48 sm:h-64 bg-slate-900 rounded-xl overflow-hidden border border-slate-700 shadow-inner flex justify-center items-center relative">
-                            <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="Popup Ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', overflow: 'hidden', backgroundColor: 'transparent' }}></iframe>
+                            <iframe data-aa='2431384' src='//acceptable.a-ads.com/2431384/?size=Adaptive' title="Popup Ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', overflow: 'hidden', backgroundColor: 'transparent' }}></iframe>
                         </div>
                         <button onClick={closeAdPopup} className="mt-8 w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-colors shadow-lg cursor-pointer text-lg">
                             Continue to Dashboard

@@ -76,7 +76,7 @@ export default function Guide() {
                 {/* Mobile In-Feed Ad Banner (Conditionally mounted via JS to satisfy A-Ads Viewability) */}
                 {window.innerWidth < 768 && (
                     <div className="w-full h-[100px] mb-8 bg-slate-900/30 rounded-xl overflow-hidden border border-slate-700/50 flex align-center justify-center relative">
-                        <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="mobile-incontent-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
+                        <iframe data-aa='2431384' src='//acceptable.a-ads.com/2431384/?size=Adaptive' title="mobile-incontent-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
                     </div>
                 )}
 

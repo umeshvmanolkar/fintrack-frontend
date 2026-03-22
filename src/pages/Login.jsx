@@ -28,7 +28,7 @@ export default function Login() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-slate-900 w-full p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 w-full p-4">
             <div className="w-full max-w-md p-8 rounded-2xl bg-slate-800/80 border border-slate-700 shadow-xl backdrop-blur-sm">
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <div className="w-10 h-10 rounded-lg bg-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 text-xl">
@@ -76,6 +76,11 @@ export default function Login() {
                 <p className="mt-6 text-center text-slate-400">
                     Don't have an account? <Link to="/signup" className="text-indigo-400 hover:text-indigo-300 font-medium ml-1 transition-colors">Sign up</Link>
                 </p>
+            </div>
+
+            {/* Public Page Ad Unit for A-Ads Bot Verification */}
+            <div className="w-full max-w-md mt-6 bg-slate-900/50 rounded-xl border border-slate-700/50 flex align-center justify-center p-1 min-h-[105px]">
+                <iframe data-aa='2431384' src='//acceptable.a-ads.com/2431384/?size=Adaptive' title="login-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent' }}></iframe>
             </div>
         </div>
     );
