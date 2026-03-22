@@ -73,10 +73,12 @@ export default function Guide() {
                     <p className="text-slate-400 mt-2 text-base md:text-lg">Essential steps to take if you are struggling to repay payday loans on time to protect your data and prevent continuous harassment.</p>
                 </div>
 
-                {/* Mobile In-Feed Ad Banner (Scrolls naturally) */}
-                <div className="md:hidden w-full h-[100px] mb-8 bg-slate-900/30 rounded-xl overflow-hidden border border-slate-700/50 flex align-center justify-center relative">
-                    <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="mobile-incontent-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
-                </div>
+                {/* Mobile In-Feed Ad Banner (Conditionally mounted via JS to satisfy A-Ads Viewability) */}
+                {window.innerWidth < 768 && (
+                    <div className="w-full h-[100px] mb-8 bg-slate-900/30 rounded-xl overflow-hidden border border-slate-700/50 flex align-center justify-center relative">
+                        <iframe data-aa='2431073' src='//acceptable.a-ads.com/2431073/?size=Adaptive' title="mobile-incontent-ad" style={{ border: 0, padding: 0, width: '100%', height: '100%', maxHeight: '100px', overflow: 'hidden', backgroundColor: 'transparent', display: 'block' }}></iframe>
+                    </div>
+                )}
 
                 <GuideSection title="Step 1: Revoke Third-Party Bank Consents" defaultOpen={false}>
                     <p className="text-slate-300 leading-relaxed relative z-10">
