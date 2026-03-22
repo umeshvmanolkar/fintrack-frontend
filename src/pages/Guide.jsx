@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShieldAlert, Info, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShieldAlert, Info, ExternalLink, ChevronDown, ChevronUp, ShieldOff, AlertTriangle, Building2 } from 'lucide-react';
 
 const AppleIcon = ({ size }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@ const dummyPaydayApps = [
     { id: 5, appName: "SwiftPay", nbfc: "Swift Financial Solutions", supportMail: "query@swiftpay.in", grievanceMail: "grievances@swiftpay.in" }
 ];
 
-function GuideSection({ title, defaultOpen = false, children }) {
+function GuideSection({ title, icon: Icon = Info, defaultOpen = false, children }) {
     const [isOpen, setIsOpen] = useState(defaultOpen);
 
     return (
@@ -40,10 +40,10 @@ function GuideSection({ title, defaultOpen = false, children }) {
                 className="w-full p-6 md:p-8 flex items-center justify-between bg-transparent hover:bg-slate-700/30 transition-colors cursor-pointer text-left focus:outline-none group"
             >
                 <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl shrink-0 transition-colors ${isOpen ? 'bg-indigo-500/20' : 'bg-slate-700/50 group-hover:bg-indigo-500/10'}`}>
-                        <Info className={isOpen ? 'text-indigo-400' : 'text-slate-400 group-hover:text-indigo-400'} size={24} />
+                    <div className={`p-3 rounded-xl shrink-0 transition-colors ${isOpen ? 'bg-indigo-500/20 shadow-inner' : 'bg-slate-700/50 group-hover:bg-indigo-500/10'}`}>
+                        <Icon className={isOpen ? 'text-indigo-400' : 'text-slate-400 group-hover:text-indigo-400'} size={24} />
                     </div>
-                    <h3 className="text-xl font-semibold text-white">{title}</h3>
+                    <h3 className="text-xl font-semibold text-white md:text-2xl">{title}</h3>
                 </div>
                 <div className="text-slate-400 shrink-0 ml-4 group-hover:text-white transition-colors">
                     {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
@@ -80,7 +80,7 @@ export default function Guide() {
                     </div>
                 )}
 
-                <GuideSection title="Step 1: Revoke Third-Party Bank Consents" defaultOpen={false}>
+                <GuideSection title="Revoke Third-Party Bank Consents" icon={ShieldOff} defaultOpen={false}>
                     <p className="text-slate-300 leading-relaxed relative z-10">
                         Many payday loan apps trick you into granting permanent access to your live bank statements via officially licensed <strong>Account Aggregators (AAs)</strong>. If you are unable to repay your loan, lenders and recovery agents may use this permanent backdoor access to continuously monitor your balance and trigger auto-debits the second you receive your salary.
                     </p>
@@ -120,7 +120,7 @@ export default function Guide() {
                     </div>
                 </GuideSection>
 
-                <GuideSection title="Step 2: File a Cybercrime Report & Block Contacts" defaultOpen={false}>
+                <GuideSection title="File a Cybercrime Report & Block Contacts" icon={AlertTriangle} defaultOpen={false}>
                     <p className="text-slate-300 leading-relaxed relative z-10 mb-4">
                         Once you have revoked the Account Aggregator consents, the next crucial step to stop harassment is reporting the illegal loan apps to the authorities and securing your phone.
                     </p>
@@ -130,7 +130,7 @@ export default function Guide() {
                     </ul>
                 </GuideSection>
 
-                <GuideSection title="Important: Loan App NBFC & Grievance Directory" defaultOpen={false}>
+                <GuideSection title="Loan App NBFC & Grievance Directory" icon={Building2} defaultOpen={false}>
                     <p className="text-slate-300 leading-relaxed relative z-10 mb-6">
                         If a loan app is harassing you (or your contacts), you must identify their official <strong>NBFC (Non-Banking Financial Company)</strong> partner and immediately email their Grievance Redressal Officer. If they do not resolve the harassment within 30 days, you can escalate the complaint directly to the RBI Ombudsman.
                     </p>
