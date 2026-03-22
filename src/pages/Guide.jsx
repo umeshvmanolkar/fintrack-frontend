@@ -120,13 +120,17 @@ export default function Guide() {
                     </div>
                 </GuideSection>
 
-                <GuideSection title="File a Cybercrime Report & Block Contacts" icon={AlertTriangle} defaultOpen={false}>
-                    <p className="text-slate-300 leading-relaxed relative z-10 mb-4">
-                        Once you have revoked the Account Aggregator consents, the next crucial step to stop harassment is reporting the illegal loan apps to the authorities and securing your phone.
+                <GuideSection title="Important Notes & Communication Tips" icon={AlertTriangle} defaultOpen={false}>
+                    <p className="text-slate-300 leading-relaxed relative z-10 mb-5">
+                        Once you have revoked the Account Aggregator consents, follow these essential communication guidelines to protect yourself from harassment and secure your devices.
                     </p>
-                    <ul className="list-disc pl-5 text-slate-300 space-y-2 relative z-10">
-                        <li><strong>Report to Cybercrime:</strong> File a formal complaint immediately at the National Cyber Crime Reporting Portal (<a href="https://cybercrime.gov.in/" target="_blank" rel="noreferrer" className="text-indigo-400 hover:text-indigo-300 underline">cybercrime.gov.in</a>) or dial 1930. Provide screenshots of the harassing messages and the loan app details.</li>
-                        <li><strong>Block & Report on WhatsApp:</strong> Do not engage with recovery agents. Use WhatsApp's built-in "Block and Report" feature for every single unknown number that messages you.</li>
+                    <ul className="list-disc pl-5 text-slate-300 space-y-4 relative z-10">
+                        <li><strong>Expect Initial Harassment:</strong> Initially, for the first 1-2 months, the harassment will be intense. Do not panic and stay positive. They will continuously call you, your reference contacts, and sometimes even numbers extracted from your bank statements. They may also send emails to your official office email ID. Stay strong and ignore the noise.</li>
+                        <li><strong>Use Truecaller VIP:</strong> If possible, upgrade to the Truecaller VIP service to automatically identify and strictly block unknown numbers and spam calls from reaching your phone.</li>
+                        <li><strong>Maintain a Single Email Thread:</strong> Always try to maintain your communication in a single email thread with each company. If any harassment occurs or inappropriate messages arrive, take screenshots, record all calls, and register those documented complaints directly in that specific email thread to build a solid evidence trail.</li>
+                        <li><strong>Reply Periodically:</strong> Do not go completely silent. If you are receiving official corporate emails regarding recovery, you should reply occasionally so it doesn't appear that the borrower is absconding or unavailable to answer. Prepare a formal, proper message draft stating your situation and use that as your standard reply.</li>
+                        <li><strong>Demand Written Settlements:</strong> If you are negotiating a settlement for any loan, you must take a proper written statement from them on email first. Ensure the email explicitly states that if you pay the agreed amount, your loan will be fully settled and a formal NOC/NDC (No Objection / No Dues Certificate) will be provided immediately. Do NOT pay without this guarantee.</li>
+                        <li><strong>Record & Escalate Threats:</strong> Always record phone calls and take screenshots of WhatsApp messages if recovery agents threaten you (e.g., threatening to call your contacts or email your office). Attach these proofs and email their official Support and Grievance teams. If they fail to provide a proper resolution within 30 days and the harassment continues, you can officially file a complaint against their NBFC with the RBI Ombudsman.</li>
                     </ul>
                 </GuideSection>
 
